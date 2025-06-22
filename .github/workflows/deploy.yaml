@@ -52,11 +52,11 @@ jobs:
           --set controller.metrics.serviceMonitor.namespace=monitoring \
           --set controller.metrics.serviceMonitor.interval=30s \
           --set controller.metrics.serviceMonitor.scrapeTimeout=10s
-          helm upgrade --install ${{ github.workspace }}/charts/ingress
+          helm upgrade --install charts/ingress --namespace=default
 
       - name: Deploy node-exporter
         run: helm upgrade --install node-exporter prometheus-community/prometheus-node-exporter
 
       - name: Deploy Gandalf app
-        run: helm upgrade --install app ${{ github.workspace }}/charts/gandalf-app
+        run: helm upgrade --install app charts/gandalf-app --namespace=default
 
