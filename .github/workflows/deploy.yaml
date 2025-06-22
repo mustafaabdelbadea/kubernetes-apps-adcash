@@ -64,7 +64,7 @@ jobs:
           --set controller.metrics.serviceMonitor.namespace=monitoring \
           --set controller.metrics.serviceMonitor.interval=30s \
           --set controller.metrics.serviceMonitor.scrapeTimeout=10s
-          helm upgrade --install charts/ingress
+          helm upgrade --install ingress charts/ingress
 
 
       - name: Deploy Gandalf app
