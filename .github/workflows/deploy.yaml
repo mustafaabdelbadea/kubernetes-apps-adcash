@@ -43,8 +43,13 @@ jobs:
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
           helm repo update
 
+      - name: Deploy namespaces
+        run: helm upgrade --install namespaces charts/namespaces
+
       - name: Install service monitor
-        run: helm upgrade --install prometheus-crd prometheus-community/prometheus-operator-crds
+        run: |
+          helm upgrade --install prometheus-crd prometheus-community/prometheus-operator-crds
+          helm upgrade --install service-monitor charts/service-monitor
 
       - name: Deploy node-exporter
         run: helm upgrade --install node-exporter prometheus-community/prometheus-node-exporter
