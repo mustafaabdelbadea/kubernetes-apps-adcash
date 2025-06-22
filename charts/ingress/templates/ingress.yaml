@@ -1,0 +1,34 @@
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /gandalf
+            pathType: Prefix
+            backend:
+              service:
+                name: gandalf-svc
+                port:
+                  number: 80
+          - path: /colombo
+            pathType: Prefix
+            backend:
+              service:
+                name: gandalf-svc
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: node-prometheus-node-exporter
+                port:
+                  number: 9100

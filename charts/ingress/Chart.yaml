@@ -1,0 +1,7 @@
+apiVersion: v1
+name: ingress
+version: v1.0.0
+maintainers:
+  - name: Mustafa Hassan
+    email: mustafa.abdelbadea@gmail.com
+    url: linkedin/in/mustafa-abdelbadea
