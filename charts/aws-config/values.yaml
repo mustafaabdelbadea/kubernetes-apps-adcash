@@ -1,1 +1,1 @@
-roleArn: eks-cluster-stack-NodeInstanceRole-AnYYgKeuE4Ft
+roleArn: arn:aws:iam::891377181493:role/eks-cluster-stack-NodeInstanceRole-AnYYgKeuE4Ft
