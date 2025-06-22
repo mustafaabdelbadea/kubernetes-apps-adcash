@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gandalf-deployment
+  namespace: default
+  labels:
+    app: gandalf
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gandalf
+  template:
+    metadata:
+      labels:
+        app: gandalf
+    spec:
+      containers:
+      - name: gandalf
+        image: {{ .Values.image.path }}:{{ .Values.image.tag}}
+        ports:
+        - containerPort: 80
