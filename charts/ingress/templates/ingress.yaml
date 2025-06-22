@@ -29,6 +29,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: node-prometheus-node-exporter
+                name: node-exporter-prometheus-node-exporter
                 port:
                   number: 9100
