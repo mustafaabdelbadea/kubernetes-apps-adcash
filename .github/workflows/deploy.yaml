@@ -34,7 +34,7 @@ jobs:
           pwd
           ls
       - name: Deploy aws-config
-        run: helm upgrade --install aws-config charts/aws-config --namespace=kube-system
+        run: helm upgrade --install aws-config charts/aws-config
 
       - name: Add helm charts
         run: |
@@ -53,11 +53,11 @@ jobs:
           --set controller.metrics.serviceMonitor.namespace=monitoring \
           --set controller.metrics.serviceMonitor.interval=30s \
           --set controller.metrics.serviceMonitor.scrapeTimeout=10s
-          helm upgrade --install charts/ingress --namespace=default
+          helm upgrade --install charts/ingress
 
       - name: Deploy node-exporter
         run: helm upgrade --install node-exporter prometheus-community/prometheus-node-exporter
 
       - name: Deploy Gandalf app
-        run: helm upgrade --install app charts/gandalf-app --namespace=default
+        run: helm upgrade --install app charts/gandalf-app
 
