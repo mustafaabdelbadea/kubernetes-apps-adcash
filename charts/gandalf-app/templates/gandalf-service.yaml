@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: gandalf-svc
   namespace: default
+  label:
+    app.kubernetes.io/component: prometheus
   annotations:
     # service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
     # Uncomment for internal load balancer
@@ -12,6 +14,7 @@ spec:
     app: gandalf
   ports:
     - protocol: TCP
+      name: gandalf
       port: 80
       targetPort: 80
   type: ClusterIP

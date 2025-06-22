@@ -43,6 +43,12 @@ jobs:
           helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
           helm repo update
 
+      - name: Install service monitor
+        run: helm upgrade --install prometheus-crd prometheus-community/prometheus-operator-crds
+
+      - name: Deploy node-exporter
+        run: helm upgrade --install node-exporter prometheus-community/prometheus-node-exporter
+
       - name: Deploy ingress
         run: |
           helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
@@ -55,8 +61,6 @@ jobs:
           --set controller.metrics.serviceMonitor.scrapeTimeout=10s
           helm upgrade --install charts/ingress
 
-      - name: Deploy node-exporter
-        run: helm upgrade --install node-exporter prometheus-community/prometheus-node-exporter
 
       - name: Deploy Gandalf app
         run: helm upgrade --install app charts/gandalf-app

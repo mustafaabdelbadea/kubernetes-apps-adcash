@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: ingress-nginx-controller
   namespace: default
+  label:
+    app.kubernetes.io/component: prometheus
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
     service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
