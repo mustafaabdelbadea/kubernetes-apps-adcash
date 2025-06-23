@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: gandalf-svc
   namespace: default
-  label:
+  labels:
     app.kubernetes.io/component: prometheus
   annotations:
     # service.beta.kubernetes.io/aws-load-balancer-type: "nlb"

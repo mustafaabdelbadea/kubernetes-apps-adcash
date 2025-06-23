@@ -1,0 +1,6 @@
+prometheus:
+  prometheusSpec:
+    remoteWrite:
+      - url: "http://54.242.5.1:9090/api/v1/write"
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false

@@ -46,26 +46,25 @@ jobs:
       - name: Deploy namespaces
         run: helm upgrade --install namespaces charts/namespaces
 
+      - name: Deploy Gandalf app
+        run: helm upgrade --install app charts/gandalf-app
+
       - name: Install service monitor
         run: |
           helm upgrade --install prometheus-crd prometheus-community/prometheus-operator-crds
           helm upgrade --install service-monitor charts/service-monitor
 
-      - name: Deploy node-exporter
-        run: helm upgrade --install node-exporter prometheus-community/prometheus-node-exporter
-
       - name: Deploy ingress
         run: |
           helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx \
           --namespace ingress-nginx --create-namespace \
-          --set controller.service.enabled=false \
+          --set controller.service.enabled=true \
           --set controller.metrics.enabled=true \
           --set controller.metrics.serviceMonitor.enabled=true \
           --set controller.metrics.serviceMonitor.namespace=monitoring \
           --set controller.metrics.serviceMonitor.interval=30s \
-          --set controller.metrics.serviceMonitor.scrapeTimeout=10s
+          --set controller.metrics.serviceMonitor.scrapeTimeout=10s -f charts/ingress/values.yaml
           helm upgrade --install ingress charts/ingress
 
-
-      - name: Deploy Gandalf app
-        run: helm upgrade --install app charts/gandalf-app
+      - name: Deploy node-exporter
+        run: helm upgrade --install node-exporter prometheus-community/prometheus-node-exporter

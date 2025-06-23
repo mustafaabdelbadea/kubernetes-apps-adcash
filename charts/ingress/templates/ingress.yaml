@@ -4,20 +4,13 @@ kind: Ingress
 metadata:
   name: gandalf-ingress
   namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /gandalf
-            pathType: Prefix
-            backend:
-              service:
-                name: gandalf-svc
-                port:
-                  number: 80
           - path: /colombo
             pathType: Prefix
             backend:
@@ -25,7 +18,14 @@ spec:
                 name: gandalf-svc
                 port:
                   number: 80
-          - path: /
+          - path: /gandalf
+            pathType: Prefix
+            backend:
+              service:
+                name: gandalf-svc
+                port:
+                  number: 80
+          - path: /metrics
             pathType: Prefix
             backend:
               service:

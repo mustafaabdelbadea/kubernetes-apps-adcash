@@ -13,6 +13,7 @@ spec:
   namespaceSelector:
     matchNames:
       - default
+      - ingress-nginx
   endpoints:
   - interval: 10s
     port: gandalf
